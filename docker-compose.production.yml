@@ -14,7 +14,7 @@ services:
     restart: always
 
   backend:
-    build: ./backend
+    image: <dockerhub_username>/kittygram_backend:latest
     env_file: .env
     depends_on:
       - db
@@ -23,14 +23,12 @@ services:
       - media:/app/media
 
   frontend:
-    build: ./frontend
-    depends_on:
-      - backend
+    image: <dockerhub_username>/kittygram_frontend:latest
     volumes:
       - static:/app/build/static
 
   gateway:
-    build: ./nginx
+    image: <dockerhub_username>/kittygram_gateway:latest
     depends_on:
       - backend
       - frontend
