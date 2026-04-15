@@ -1,16 +1,8 @@
-# flake8: noqa
 import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-<<<<<<< HEAD
-SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
-=======
 SECRET_KEY = os.getenv(
     'SECRET_KEY',
     'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
@@ -19,7 +11,6 @@ SECRET_KEY = os.getenv(
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,18 +56,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 
 
-<<<<<<< HEAD
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', 'postgres'),
-        'USER': os.getenv('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
-        'HOST': os.getenv('DB_HOST', 'db'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
-=======
 if os.getenv('POSTGRES_DB'):
     DATABASES = {
         'default': {
@@ -95,7 +74,6 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
 
 
 # Password validation
@@ -126,14 +104,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-<<<<<<< HEAD
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-=======
-
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -142,7 +114,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', 
+        'rest_framework.permissions.IsAuthenticated',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -151,9 +123,4 @@ REST_FRAMEWORK = {
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)

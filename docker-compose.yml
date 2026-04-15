@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-version: '3.3'
-
-volumes:
-  static:
-  media:
-  pg_data:
-
-services:
-  db:
-=======
 version: '3'
 
 volumes:
@@ -19,20 +8,14 @@ volumes:
 services:
   db:
     container_name: db
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
     image: postgres:13
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
-<<<<<<< HEAD
-    restart: always
 
-  backend:
-=======
   backend:
     container_name: backend
     image: kittygram_backend
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
     build: ./backend
     env_file: .env
     depends_on:
@@ -40,21 +23,11 @@ services:
     volumes:
       - static:/app/static
       - media:/app/media
-<<<<<<< HEAD
-
-  frontend:
-    build: ./frontend
-    depends_on:
-      - backend
-    volumes:
-      - static:/app/build/static
-
-  gateway:
-=======
     command: >
       sh -c "python manage.py migrate &&
              python manage.py collectstatic --noinput &&
              gunicorn kittygram_backend.wsgi:application --bind 0.0.0.0:8000"
+
   frontend:
     container_name: frontend
     image: kittygram_frontend
@@ -62,20 +35,16 @@ services:
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
+
   gateway:
     container_name: gateway
     image: kittygram_gateway
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
     build: ./nginx
     depends_on:
       - backend
       - frontend
     ports:
-<<<<<<< HEAD
-      - "80:80"
-=======
       - 9000:80
->>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
     volumes:
       - static:/static
       - media:/media
