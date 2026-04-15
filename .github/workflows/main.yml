@@ -8,6 +8,20 @@ on:
 jobs:
   backend_lint_and_test:
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:13
+        env:
+          POSTGRES_DB: kittygram
+          POSTGRES_USER: kittygram_user
+          POSTGRES_PASSWORD: kittygram_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U kittygram_user -d kittygram"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,8 +42,17 @@ jobs:
 
       - name: Run backend tests
         env:
-          DJANGO_SETTINGS_MODULE: kittygram_backend.settings
-        run: pytest
+          DB_ENGINE: django.db.backends.postgresql
+          POSTGRES_DB: kittygram
+          POSTGRES_USER: kittygram_user
+          POSTGRES_PASSWORD: kittygram_password
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          SECRET_KEY: test_secret_key
+          ALLOWED_HOSTS: 127.0.0.1,localhost
+        run: |
+          cd backend
+          python manage.py test
 
   frontend_test:
     runs-on: ubuntu-latest
