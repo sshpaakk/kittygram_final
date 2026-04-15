@@ -4,8 +4,15 @@ djoser==2.1.0
 webcolors==1.11.1
 psycopg2-binary==2.9.3
 Pillow==9.0.0
+<<<<<<< HEAD
+=======
+gunicorn==20.1.0
+>>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
 pytest==6.2.4
 pytest-django==4.4.0
 pytest-pythonpath==0.7.3
 PyYAML==6.0
+<<<<<<< HEAD
 gunicorn==20.1.0
+=======
+>>>>>>> f559300 (Configure Kittygram Docker and CI/CD)

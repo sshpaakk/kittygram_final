@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 repo_owner: sshpaakk
 dockerhub_username: mmpapkov
 taski_domain: https://example.com/
 kittygram_domain: https://example.com/kittygram/
+=======
+repo_owner: your_github_username
+kittygram_domain: https://example.com
+taski_domain: https://example.com
+dockerhub_username: your_dockerhub_username
+>>>>>>> f559300 (Configure Kittygram Docker and CI/CD)
